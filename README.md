@@ -11,7 +11,6 @@ A simple IntelliJ IDEA plugin for converting Java POJOs to Protocol Buffer (prot
 * Handles nested objects and collections
 * Supports both proto2 and proto3 syntax
 * Configurable settings for customizing the output
-* Works with Java and Kotlin classes
 <!-- Plugin description end -->
 
 ## Features
@@ -19,7 +18,7 @@ A simple IntelliJ IDEA plugin for converting Java POJOs to Protocol Buffer (prot
 * Convert Java classes to Protocol Buffer definitions
 * Support for nested classes and complex types
 * Configurable settings for customization
-* Copy Protocol Buffer definitions to clipboard
+* Generate file with Protocol Buffer definitions
 
 ## Usage
 
@@ -31,7 +30,7 @@ A simple IntelliJ IDEA plugin for converting Java POJOs to Protocol Buffer (prot
 
 - Using the IDE built-in plugin system:
 
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "POJO to Proto"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "PojoToProto"</kbd> >
   <kbd>Install</kbd>
 
 - Manually:

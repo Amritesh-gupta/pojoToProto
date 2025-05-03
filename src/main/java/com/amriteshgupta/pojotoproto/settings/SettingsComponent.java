@@ -42,7 +42,7 @@ public class SettingsComponent {
 
         FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         VirtualFile baseDir = project.getBaseDir();
-        descriptor.setRoots(baseDir);
+        if (baseDir != null) descriptor.setRoots(baseDir);
         descriptor.setShowFileSystemRoots(false);
 
         packagePathField.addBrowseFolderListener(

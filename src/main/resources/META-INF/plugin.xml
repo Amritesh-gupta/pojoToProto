@@ -1,15 +1,57 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.amriteshgupta.pojotoproto</id>
-    <name>pojoToProto</name>
-    <vendor>amritesh-gupta</vendor>
+    <name>POJO to Proto</name>
+    <vendor email="amritesh.gupta@example.com" url="https://github.com/Amritesh-gupta/pojoToProto">Amritesh Gupta</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.amriteshgupta.pojotoproto.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.amriteshgupta.pojotoproto.startup.MyProjectActivity" />
+        <notificationGroup id="com.github.amriteshgupta.pojotoproto.NotificationGroup"
+                           displayType="BALLOON"
+                           key="com.github.amriteshgupta.pojotoproto.NotificationGroup"/>
+                           
+        <applicationService serviceImplementation="com.amriteshgupta.pojotoproto.settings.SettingsState"/>
+        
+        <projectConfigurable
+            parentId="tools"
+            instance="com.amriteshgupta.pojotoproto.settings.SettingsConfigurable"
+            id="com.amriteshgupta.pojotoproto.settings.SettingsConfigurable"
+            displayName="POJO To Proto"
+            />
     </extensions>
+
+    <actions>
+        <group id="com.github.amriteshgupta.pojotoproto.EditorPopupMenuGroup">
+            <action class="com.amriteshgupta.pojotoproto.actions.EditorPopupMenuAction"
+                    id="com.github.amriteshgupta.pojotoproto.EditorPopupMenuAction"
+                    icon="AllIcons.FileTypes.Text"
+                    text="Copy Proto"
+                    description="Convert POJO to Protocol Buffer and copy to the clipboard">
+            </action>
+            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="Copy.Paste.Special"/>
+        </group>
+
+        <group id="com.github.amriteshgupta.pojotoproto.GenerateGroup">
+            <action class="com.amriteshgupta.pojotoproto.actions.EditorPopupMenuAction"
+                    id="com.github.amriteshgupta.pojotoproto.GenerateGroupAction"
+                    icon="AllIcons.FileTypes.Text"
+                    text="Copy Proto"
+                    description="Convert POJO to Protocol Buffer and copy to the clipboard">
+            </action>
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </group>
+
+        <group id="com.github.amriteshgupta.pojotoproto.ProjectViewPopupMenuGroup">
+            <action class="com.amriteshgupta.pojotoproto.actions.ProjectViewPopupMenuAction"
+                    id="com.github.amriteshgupta.pojotoproto.ProjectViewPopupMenuAction"
+                    icon="AllIcons.FileTypes.Text"
+                    text="Copy Proto"
+                    description="Convert POJO to Protocol Buffer and copy to the clipboard">
+            </action>
+            <add-to-group group-id="CutCopyPasteGroup" anchor="last"/>
+        </group>
+    </actions>
 </idea-plugin>

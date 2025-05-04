@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "Country.proto";
+
+message Address {
+  string street = 1;
+  string city = 2;
+  string zipCode = 3;
+  Country country = 4;
+}

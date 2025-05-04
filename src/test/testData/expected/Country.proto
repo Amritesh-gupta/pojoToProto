@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Country {
+  string name = 1;
+  string code = 2;
+}

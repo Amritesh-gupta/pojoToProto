@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "Address.proto";
+
+enum UserType {
+  ADMIN = 1;
+  REGULAR = 2;
+  GUEST = 3;
+}
+
+message ComplexUser {
+  string username = 1;
+  string email = 2;
+  int32 age = 3;
+  bool active = 4;
+  UserType type = 5;
+  Address address = 6;
+  repeated string tags = 7;
+  repeated int32 scores = 8;
+  map<string, string> preferences = 9;
+  string birthDate = 10;
+  repeated string aliases = 11;
+}

@@ -102,7 +102,9 @@ intellijPlatform {
 
     pluginVerification {
         ides {
+            ide("IC-2023.3")
             ide("IC-2024.1")
+            ide("IC-2025.1")
         }
     }
 }

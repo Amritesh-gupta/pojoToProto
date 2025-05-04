@@ -3,6 +3,9 @@ package com.amriteshgupta.pojotoproto.settings;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.ui.ComponentWithBrowseButton;
+import com.intellij.openapi.ui.TextComponentAccessor;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.components.JBCheckBox;
@@ -39,19 +42,21 @@ public class SettingsComponent {
     }
 
     public JComponent getPackageComponent(Project project) {
-
         FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
-        VirtualFile baseDir = project.getBaseDir();
-        if (baseDir != null) descriptor.setRoots(baseDir);
+        descriptor.setRoots(ProjectRootManager.getInstance(project).getContentRoots());
         descriptor.setShowFileSystemRoots(false);
 
-        packagePathField.addBrowseFolderListener(
+        ComponentWithBrowseButton.BrowseFolderActionListener<JTextField> actionListener =
+                new ComponentWithBrowseButton.BrowseFolderActionListener<>(
                 "Select Target Package Path",
                 "Choose the project-relative path where .proto files should be generated",
+                packagePathField,
                 project,
-                descriptor
+                descriptor,
+                TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT
         );
-        packagePathField.setToolTipText("If no path is specified, the .proto files will be generated in the Scratch folder.");
+
+        packagePathField.addActionListener(actionListener);
         return packagePathField;
     }
 
